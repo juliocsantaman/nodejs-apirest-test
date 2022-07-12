@@ -16,7 +16,13 @@ class OrderService {
 
   async find() {
     const response = await models.Order.findAll({
-      include: ['customer']
+      include: [
+        {
+          association: 'customer',
+          include: ['user']
+        },
+        'items'
+      ]
     });
     return response;
   }
@@ -32,7 +38,7 @@ class OrderService {
       ]
     });
     if(!order) {
-      throw boom.notFound('user not found.');
+      throw boom.notFound('order not found.');
     }
     return order;
   }
