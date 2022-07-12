@@ -8,6 +8,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.drop(TASK_TABLE);
+    await queryInterface.dropTable(TASK_TABLE);
   }
 };
